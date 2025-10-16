@@ -131,85 +131,75 @@
     </div>
   </div>
 
-  <!-- Password Result Modal -->
-  <div id="result-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-overlay">
-    <div class="glass rounded-3xl p-8 max-w-2xl w-full shadow-2xl animate-slideUp">
-      <div class="flex justify-between items-center mb-6">
-        <div class="flex items-center gap-3">
-          <span class="text-4xl">✅</span>
-          <h3 class="text-2xl font-bold gradient-text">تم التوليد بنجاح!</h3>
+<!-- Password Result Modal -->
+<div id="result-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4  modal-overlay top-12">
+  <div class="relative rounded-3xl p-4 sm:p-8 max-w-md sm:max-w-2xl w-full shadow-2xl overflow-y-auto bg-black/40 backdrop-blur-md animate-slideUp">
+    <div class="space-y-4 sm:space-y-6">
+          <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 gap-3 sm:gap-0">
+      <div class="flex items-center gap-2 sm:gap-3 text-center sm:text-left">
+        <span class="text-3xl sm:text-4xl">✅</span>
+        <h3 class="text-xl sm:text-2xl font-bold gradient-text">تم التوليد بنجاح!</h3>
+      </div>
+      <button id="close-result" class="text-white text-2xl sm:text-3xl hover:scale-125 hover:rotate-90 transition-500">
+        ✕
+      </button>
+    </div>
+      <!-- Password Display -->
+      <div class="glass-dark rounded-2xl p-4 sm:p-6">
+        <div class="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 text-center">الباسورد المولد:</div>
+
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center flex-wrap break-all text-center">
+          <span id="result-password" class="text-2xl sm:text-3xl font-mono-ar font-bold tracking-wide text-indigo-300 break-all">**********</span>
+          <div class="flex gap-2">
+            <button id="toggle-result" class="p-2 sm:p-3 glass rounded-xl hover:scale-125 transition-500" title="إظهار/إخفاء">
+              <span class="text-xl sm:text-2xl">👁️</span>
+            </button>
+            <button id="copy-result" class="p-2 sm:p-3 glass rounded-xl hover:scale-125 transition-500" title="نسخ">
+              <span class="text-xl sm:text-2xl">📋</span>
+            </button>
+            <button id="copy-all-data" class="p-2 sm:p-3 glass rounded-xl hover:scale-125 transition-500" title="نسخ كل البيانات">
+              <span class="text-xl sm:text-2xl">📄</span>
+            </button>
+          </div>
         </div>
-        <button id="close-result" class="text-white text-3xl hover:scale-125 hover:rotate-90 transition-500">✕</button>
+
+        <div id="copy-msg" class="text-green-400 font-bold mt-3 sm:mt-4 text-center hidden flex items-center justify-center gap-2 text-sm sm:text-base">
+          <span class="text-xl sm:text-2xl">✅</span>
+          <span id="copy-msg-text">تم النسخ للحافظة!</span>
+        </div>
       </div>
 
-      <div class="space-y-6">
-        <!-- Password Display -->
-        <div class="glass-dark rounded-2xl p-6">
-          <div class="text-sm text-gray-400 mb-3 text-center">الباسورد المولد:</div>
-          <div class="flex gap-4 items-center justify-center flex-wrap">
-            <span id="result-password" class="text-3xl font-mono-ar font-bold tracking-wide text-indigo-300">**********</span>
-            <div class="flex gap-2">
-              <button id="toggle-result" class="p-3 glass rounded-xl hover:scale-125 transition-500" title="إظهار/إخفاء">
-                <span class="text-2xl">👁️</span>
-              </button>
-              <button id="copy-result" class="p-3 glass rounded-xl hover:scale-125 transition-500" title="نسخ">
-                <span class="text-2xl">📋</span>
-              </button>
-              <button id="copy-all-data" class="p-3 glass rounded-xl hover:scale-125 transition-500" title="نسخ كل البيانات">
-                <span class="text-2xl">📄</span>
-              </button>
-            </div>
-          </div>
-          <div id="copy-msg" class="text-green-400 font-bold mt-4 text-center hidden flex items-center justify-center gap-2">
-            <span class="text-2xl">✅</span>
-            <span id="copy-msg-text">تم النسخ للحافظة!</span>
-          </div>
+      <!-- Strength Indicator -->
+      <div id="strength-indicator" class="w-full"></div>
+
+      <!-- Password Details -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div class="glass-dark rounded-xl p-3 sm:p-4 text-center">
+          <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">📏</div>
+          <div class="text-xs sm:text-sm text-gray-400">الطول</div>
+          <div class="text-lg sm:text-xl font-bold text-indigo-300" id="pwd-length">-</div>
         </div>
-
-        <!-- Strength Indicator -->
-        <div id="strength-indicator"></div>
-
-        <!-- Password Details -->
-        <div class="grid grid-cols-2 gap-4">
-          <div class="glass-dark rounded-xl p-4 text-center">
-            <div class="text-3xl mb-2">📏</div>
-            <div class="text-sm text-gray-400">الطول</div>
-            <div class="text-xl font-bold text-indigo-300" id="pwd-length">-</div>
-          </div>
-          <div class="glass-dark rounded-xl p-4 text-center">
-            <div class="text-3xl mb-2">🔢</div>
-            <div class="text-sm text-gray-400">الأرقام</div>
-            <div class="text-xl font-bold text-indigo-300" id="pwd-numbers">-</div>
-          </div>
-          <div class="glass-dark rounded-xl p-4 text-center">
-            <div class="text-3xl mb-2">🔤</div>
-            <div class="text-sm text-gray-400">الأحرف</div>
-            <div class="text-xl font-bold text-indigo-300" id="pwd-letters">-</div>
-          </div>
-          <div class="glass-dark rounded-xl p-4 text-center">
-            <div class="text-3xl mb-2">✨</div>
-            <div class="text-sm text-gray-400">الرموز</div>
-            <div class="text-xl font-bold text-indigo-300" id="pwd-symbols">-</div>
-          </div>
+        <div class="glass-dark rounded-xl p-3 sm:p-4 text-center">
+          <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">🔢</div>
+          <div class="text-xs sm:text-sm text-gray-400">الأرقام</div>
+          <div class="text-lg sm:text-xl font-bold text-indigo-300" id="pwd-numbers">-</div>
         </div>
-
-        <!-- Info -->
-        <div class="glass-dark rounded-xl p-4">
-          <div class="flex items-start gap-2">
-            <span class="text-2xl">💡</span>
-            <div class="text-xs text-gray-300 leading-relaxed">
-              <p class="mb-2">هذا الباسورد تم توليده باستخدام خوارزميات تشفير متقدمة:</p>
-              <ul class="list-disc list-inside space-y-1 text-indigo-300">
-                <li>SHA-256 Hash Function</li>
-                <li>PBKDF2 Key Derivation (100,000 iterations)</li>
-                <li>Custom Character Mixing Algorithm</li>
-              </ul>
-              <p class="mt-2 text-yellow-300 font-bold">⚡ نفس المدخلات = نفس الباسورد دائماً</p>
-            </div>
-          </div>
+        <div class="glass-dark rounded-xl p-3 sm:p-4 text-center">
+          <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">🔤</div>
+          <div class="text-xs sm:text-sm text-gray-400">الأحرف</div>
+          <div class="text-lg sm:text-xl font-bold text-indigo-300" id="pwd-letters">-</div>
+        </div>
+        <div class="glass-dark rounded-xl p-3 sm:p-4 text-center">
+          <div class="text-2xl sm:text-3xl mb-1 sm:mb-2">✨</div>
+          <div class="text-xs sm:text-sm text-gray-400">الرموز</div>
+          <div class="text-lg sm:text-xl font-bold text-indigo-300" id="pwd-symbols">-</div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+</div>
   </div>
 
   <!-- Settings Panel -->
