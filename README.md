@@ -35,6 +35,9 @@
 ## 🌟 Overview
 
 The **Smart Password Generator** is a revolutionary web-based tool that generates strong, unique passwords using advanced cryptographic algorithms. Unlike traditional password managers, this tool:
+![Project Preview](photo/1.png)
+![Project Preview](photo/2.png)
+![Project Preview](photo/3.png)
 
 - ✅ **Never stores your passwords** - Everything is computed in real-time
 - ✅ **Deterministic** - Same inputs always produce the same password
